@@ -4,10 +4,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const handleStation = () => {
-    return(
-      console.log('hi')
-    )
+  const openList = (e) => {
+    var buttonEl = e.target;
+    var innerBox = buttonEl.parentElement;
+    var listBox = buttonEl.parentElement.children[1];
+    if(!innerBox.classList.contains('box__select-list--active')){
+      innerBox.classList.add('box__select-list--active')
+    }else{
+      innerBox.classList.remove('box__select-list--active')
+    }
   }
   return (
     <>
@@ -16,26 +21,50 @@ function App() {
         <div className='box__select-inner'>
           <p className='text__select-title'>출발역</p>
           <div className='box__select-list'>
-            <button type='button' className='button__subway' onClick={handleStation}>
+            <button type='button' className='button__subway' onClick={openList}>
               <span className='text__line'>2</span>선릉
             </button>
             <ul className='list__stations'>
-              <li className='list-item'><span className='text__line'>2</span>선릉</li>
-              <li className='list-item'><span className='text__line'>2</span>강남</li>
-              <li className='list-item'><span className='text__line'>2</span>역삼</li>
+              <li className='list-item'>
+                <button type='button' className='button__station'>
+                  <span className='text__line'>2</span>선릉
+                </button>
+              </li>
+              <li className='list-item'>
+                <button type='button' className='button__station'>
+                  <span className='text__line'>2</span>강남
+                </button>
+              </li>
+              <li className='list-item'>
+                <button type='button' className='button__station'>
+                  <span className='text__line'>2</span>역삼
+                </button>
+              </li>
             </ul>
           </div>
         </div>
         <div className='box__select-inner'>
           <p className='text__select-title'>도착역</p>
           <div className='box__select-list'>
-            <button type='button' className='button__subway' onClick={handleStation}>
+            <button type='button' className='button__subway' onClick={openList}>
               <span className='text__line'>2</span>신림
             </button>
             <ul className='list__stations'>
-              <li className='list-item'><span className='text__line'>2</span>신림</li>
-              <li className='list-item'><span className='text__line'>2</span>구로디지털단지</li>
-              <li className='list-item'><span className='text__line'>2</span>신도림</li>
+              <li className='list-item'>
+                <button type='button' className='button__station'>
+                  <span className='text__line'>2</span>신림
+                </button>
+              </li>
+              <li className='list-item'>
+                <button type='button' className='button__station'>
+                  <span className='text__line'>2</span>구로디지털단지
+                </button>
+              </li>
+              <li className='list-item'>
+                <button type='button' className='button__station'>
+                  <span className='text__line'>2</span>신도림
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -48,16 +77,16 @@ function App() {
       <div className='box__congestion-wrap'>
         <p className='text__congestion-title'>혼잡도</p>
         <div className="box__congestion-inner">
-          <div className='box__congestion'>1</div>
-          <div className='box__congestion'>2</div>
-          <div className='box__congestion'>3</div>
-          <div className='box__congestion'>4</div>
-          <div className='box__congestion'>5</div>
-          <div className='box__congestion'>6</div>
-          <div className='box__congestion'>7</div>
-          <div className='box__congestion'>8</div>
-          <div className='box__congestion'>9</div>
-          <div className='box__congestion'>10</div>
+          <div className='box__congestion' style={{'background':'var(--toomuch)'}}>1</div>
+          <div className='box__congestion' style={{'background':'var(--alot)'}}>2</div>
+          <div className='box__congestion' style={{'background':'var(--normal)'}}>3</div>
+          <div className='box__congestion' style={{'background':'var(--normal)'}}>4</div>
+          <div className='box__congestion' style={{'background':'var(--peace)'}}>5</div>
+          <div className='box__congestion' style={{'background':'var(--peace)'}}>6</div>
+          <div className='box__congestion' style={{'background':'var(--peace)'}}>7</div>
+          <div className='box__congestion' style={{'background':'var(--normal)'}}>8</div>
+          <div className='box__congestion' style={{'background':'var(--peace)'}}>9</div>
+          <div className='box__congestion' style={{'background':'var(--toomuch)'}}>10</div>
         </div>
       </div>
     </>
