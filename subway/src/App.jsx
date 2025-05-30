@@ -1,13 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import axios from "axios";
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [subway, setSubway] = useState([]);
+  const apiKey = import.meta.env.VITE_SUBWAY_API_KEY;
+  const station = '문래';
+  const url = `http://swopenapi.seoul.go.kr/api/subway/${apiKey}/json/realtimeStationArrival/1/5/${station}`
+  useEffect(() => {
+    const fetchSubway = 
+      async () => {
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          console.log(data.realtimeArrivalList[0], 'subwayId');
+          // console.log(data.realtimeArrivalList[0].subwayNm, '지하철 호선명'); null
+          console.log(data.realtimeArrivalList[0].trainLineNm, '방면');
+          console.log(data.realtimeArrivalList[0].updnLine === '1' ? '하행/외선' : '상행/내선', '상하행');
+          console.log(data.realtimeArrivalList[0].lstcarAt === '1' ? '막차' : '막차 아님', '막차여부');
+          console.log(data.realtimeArrivalList[0].arvlMsg2, '도착 마은 시간');
+          // subwayId === '1001' && '1호선'
+          // subwayId === '1002' && '2호선'
+          // subwayId === '1003' && '3호선'
+          // subwayId === '1004' && '4호선'
+          // subwayId === '1005' && '5호선'
+          // subwayId === '1006' && '6호선'
+          // subwayId === '1007' && '7호선'
+          // subwayId === '1008' && '8호선'
+          // subwayId === '1009' && '9호선'
+          // subwayId === '1032' && 'GTX-A'
+          // subwayId === '1063' && '경의중앙선'
+          // subwayId === '1065' && '공항철도'
+          // subwayId === '1067' && '경춘선'
+          // subwayId === '1077' && '신분당선'
+          // subwayId === '1075' && '수인분당선'
+          // subwayId === '1081' && '경강선'
+          // subwayId === '1092' && '우이신설선'
+          // subwayId === '1093' && '서해선'
+          // subwayId === '1094' && '신림선'
+        } catch(err){
+          console.log('error');
+        }
+    }
+    fetchSubway();
+  }, []);
   const openList = (e) => {
     var buttonEl = e.target;
     var innerBox = buttonEl.parentElement;
-    var listBox = buttonEl.parentElement.children[1];
     if(!innerBox.classList.contains('box__select-list--active')){
       innerBox.classList.add('box__select-list--active')
     }else{
